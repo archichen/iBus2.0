@@ -3,10 +3,15 @@ import 'package:ibus2/Redux/State.dart';
 import 'package:redux/redux.dart';
 
 IBusState appReducer(IBusState state, dynamic action) {
-  return new IBusState(
-    busList: busListReducer(state.busList, action),
-    locationState: locationReducer(state.locationState, action)
-  );
+  switch (action) {
+    case UpdateLocationAction:
+      state.locationState = locationReducer(state.locationState, action);
+      break;
+    case UpdateBusListAction:
+      state.busList = busListReducer(state.busList, action);
+      break;
+  }
+  return state;
 }
 
 final busListReducer = combineReducers<BusList> ([

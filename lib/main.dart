@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:ibus2/Redux/State.dart';
+import 'package:ibus2/mainPage/Background.dart';
+import 'package:ibus2/startPage/StartPage.dart';
 import 'package:redux/redux.dart';
 import 'package:ibus2/Redux/Reducers.dart';
 
@@ -11,7 +13,7 @@ void main() {
 
   runApp(
       new IBusApp(
-        title: 'Flutter Redux Demo',
+        title: 'IBus',
         store: store,
       )
   );
@@ -33,9 +35,7 @@ class IBusApp extends StatelessWidget {
       store: store,
       child: new MaterialApp(
         title: title,
-        home: new Scaffold(
-          body: new Center(),
-        ),
+        home: new StartPage()
       ),
     );
   }
