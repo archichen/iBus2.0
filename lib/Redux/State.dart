@@ -1,12 +1,17 @@
+import 'package:ibus2/Entites/bus_info.dart';
+
 class IBusState {
   // 当前定位
   LocationState locationState;
   // 当前站点公交列表
-  BusList busList;
+  BusInfo busInfo;
 
-  IBusState({BusList busList, LocationState locationState})
+  String stationName;
+
+  IBusState({BusInfo busInfo, LocationState locationState, String stationName})
       :locationState = locationState,
-        busList = busList;
+        busInfo = busInfo,
+        stationName = stationName;
 }
 
 class LocationState {
@@ -14,18 +19,4 @@ class LocationState {
   double latitude;
 
   LocationState(this.longitude, this.latitude);
-}
-
-class BusList {
-  List<BusEntry> busList;
-
-  BusList(this.busList);
-}
-
-class BusEntry {
-  String busName;
-  String status;
-  String terminal;
-
-  BusEntry(this.busName, this.status, this.terminal);
 }

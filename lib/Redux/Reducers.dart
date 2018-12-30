@@ -1,26 +1,22 @@
+import 'package:ibus2/Entites/bus_info.dart';
 import 'package:ibus2/Redux/Actions.dart';
 import 'package:ibus2/Redux/State.dart';
 import 'package:redux/redux.dart';
 
 IBusState appReducer(IBusState state, dynamic action) {
-  switch (action) {
-    case UpdateLocationAction:
-      state.locationState = locationReducer(state.locationState, action);
-      break;
-    case UpdateBusListAction:
-      state.busList = busListReducer(state.busList, action);
-      break;
-  }
+  state.stationName = stationNameReducer(state.stationName, action);
+  state.busInfo = busInfoReducer(state.busInfo, action);
+  state.locationState = locationReducer(state.locationState, action);
   return state;
 }
 
-final busListReducer = combineReducers<BusList> ([
-  TypedReducer<BusList, UpdateBusListAction>(_busListReducer)
+final busInfoReducer = combineReducers<BusInfo> ([
+  TypedReducer<BusInfo, UpdateBusInfoAction>(_busInfoReducer)
 ]);
 
-BusList _busListReducer(BusList busList, UpdateBusListAction action) {
+BusInfo _busInfoReducer(BusInfo busInfo, UpdateBusInfoAction action) {
 
-  return BusList(action.busList.busList);
+  return new BusInfo(action.busInfo.data);
 }
 
 final locationReducer = combineReducers<LocationState>([
@@ -29,4 +25,12 @@ final locationReducer = combineReducers<LocationState>([
 
 LocationState _locationReducer(LocationState locationState, UpdateLocationAction action) {
   return new LocationState(action.locationState.longitude, action.locationState.latitude);
+}
+
+final stationNameReducer = combineReducers<String>([
+  TypedReducer<String, UpdateStationNameAction>(_stationNameReducer)
+]);
+
+String _stationNameReducer(String name, UpdateStationNameAction action) {
+  return action.name;
 }

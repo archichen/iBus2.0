@@ -1,13 +1,20 @@
+import 'package:ibus2/Entites/bus_info.dart';
 import 'package:ibus2/Redux/State.dart';
 
-class UpdateBusListAction {
-  BusList busList;
+class UpdateBusInfoAction {
+  BusInfo busInfo;
 
-  UpdateBusListAction(this.busList);
+  UpdateBusInfoAction(this.busInfo);
 }
 
 class UpdateLocationAction {
   LocationState locationState;
 
   UpdateLocationAction(this.locationState);
+}
+
+class UpdateStationNameAction {
+  String name;
+
+  UpdateStationNameAction(this.name);
 }
